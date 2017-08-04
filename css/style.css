@@ -13,5 +13,12 @@ main {
 	width: 300%;
 	background: url(../img/main_background.jpg);
 	background-size: 100% 100%;
+	position: relative;
 }
 
+.element {
+	display: block;
+	position: absolute;
+	overflow: hidden;
+	background-size: cover !important;
+}
