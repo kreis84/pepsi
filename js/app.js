@@ -68,7 +68,7 @@ var PEPSI = (function(){
 		var center = mainWidth / 2.7;
 		if(window.DeviceOrientationEvent) {
 			window.addEventListener('deviceorientation', function(event){
-				window.scrollTo(center - (event.alpha* 10), 0);
+				window.scrollTo(center - (event.gamma*8), 0);
 			});
 		}
 	}
@@ -95,9 +95,6 @@ var PEPSI = (function(){
             setTimeout(function(){window.scrollTo(mainWidth/2.7, 0)}, 500);
             setInterval(function(){
 				nextIteration(dataTab);
-     //            actPart ++;
-     //            if(actPart < dataTab.length)
-					// data = dataTab[actPart];
 			}, partTime);
 		}
 	}
