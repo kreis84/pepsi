@@ -9,28 +9,31 @@ var PEPSI = (function(){
 		loopCounter = 0,
         intervalVar,
 		data,
-		$elements = [];
+		elements = [];
 
 	var ANIMS = {
 		move: function(index, values) {
-			TweenMax.to($elements[index], 0, {x: values[0], y: values[1]});
+			TweenMax.to(elements[index], 0, {x: values[0], y: values[1]});
 		},
 		rotate: function(index, arr) {
-			TweenMax.to($elements[index], 0, {rotation: arr[0]});
+            TweenMax.to(elements[index], 0, {rotation: arr[0]});
 		},
 		changeBackground: function(index, values) {
 			var path = 'url(../img/'+values[0]+'.png';
-            TweenMax.to($elements[index], 0, {background: path});
+            TweenMax.to(elements[index], 0, {background: path});
 		},
 		brightnes: function(index, values) {
-			TweenMax.to($elements[index], 0, {filter: 'brightness('+values+'%)'});
+            TweenMax.to(elements[index], 0, {filter: 'brightness('+values+'%)'});
+		},
+		rotateXY: function(index, values) {
+			TweenMax.to(elements[index], values[1], {transform: 'rotateY('+values[0]+'deg)'});
 		}
 	};
 
 	function animateElements() {
 		data.forEach(function(element, index){
 			if(element.time)
-				if(loopCounter % element.time == 0){
+				if(loopCounter % element.time === 0){
 					for(var i = 0; i < element.anims[element.counter].length; i++)
 							ANIMS[element.anims[element.counter][i].type](index, element.anims[element.counter][i].values);
 					element.counter++;
@@ -38,11 +41,11 @@ var PEPSI = (function(){
 				}
 		});
 		loopCounter += loopInterval;
-	};
+	}
 
 	function startMainLoop(){
 		intervalVar = setInterval(animateElements, loopInterval);
-	};
+	}
 
 	function initGraphs() {
 		data.forEach(function(element) {
@@ -57,9 +60,9 @@ var PEPSI = (function(){
            	newElement.style.height =  mainHeight / 100 * element.height+'px';
            	newElement.style.zIndex = element.z;
 			document.querySelector('main').appendChild(newElement);
-            $elements.push('#'+element.id);
+            elements.push('#'+element.id);
 		});
-    };
+    }
 
 	function initEvents() {
 		var center = mainWidth / 2.7;
@@ -68,7 +71,7 @@ var PEPSI = (function(){
 				window.scrollTo(center - (event.alpha* 10), 0);
 			});
 		}
-	};
+	}
 
 	function nextIteration(){
 		document.querySelector('main').innerHTML = '';
@@ -85,7 +88,6 @@ var PEPSI = (function(){
 			initEvents();
             startMainLoop();
             setTimeout(function(){window.scrollTo(mainWidth/2.7, 0)}, 500);
-
             setInterval(function(){
 				nextIteration();
                 actPart ++;

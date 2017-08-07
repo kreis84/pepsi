@@ -295,6 +295,22 @@ var DATA = [
             [{type: 'rotate', values: [4]}],
         ]
     },
+    {   time: 200,
+        x: 50,
+        y: 88,
+        z: 4,
+        counter: 0,
+        width: 6,
+        height: 10,
+        id: 'pepsi3',
+        anims: [
+            [{type: 'rotateXY', values: [40,0.2]}],
+            [{type: 'rotateXY', values: [-40,0.2]}],
+            [{type: 'rotateXY', values: [0,0.2]}],
+            [{type: 'rotateXY', values: [0,0.2]}],
+            [{type: 'rotateXY', values: [0,0.2]}],
+        ]
+    },
 ];
 
 var DATA2 =[
