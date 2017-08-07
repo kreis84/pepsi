@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    PEPSI.init([DATA], 3000);
+    PEPSI.init([DATA, DATA2], 1000);
 });
 
 var PEPSI = (function(){
@@ -19,7 +19,7 @@ var PEPSI = (function(){
             TweenMax.to(elements[index], 0, {rotation: arr[0]});
 		},
 		changeBackground: function(index, values) {
-			var path = 'url(../img/'+values[0]+'.png';
+			var path = 'url(./img/'+values[0]+'.png';
             TweenMax.to(elements[index], 0, {background: path});
 		},
 		brightnes: function(index, values) {
@@ -49,7 +49,7 @@ var PEPSI = (function(){
 
 	function initGraphs() {
 		data.forEach(function(element) {
-			var	path = 'url(../img/'+element.id+'.png) ';
+			var	path = 'url(./img/'+element.id+'.png) ';
 			var newElement = document.createElement('div');
            	newElement.classList += 'element';
            	newElement.setAttribute('id', element.id);
@@ -75,7 +75,7 @@ var PEPSI = (function(){
 
 	function nextIteration(){
 		document.querySelector('main').innerHTML = '';
-        $elements = [];
+        elements = [];
 		initGraphs();
         loopCounter = 0;
 	}
