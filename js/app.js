@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-    PEPSI.init([DATA, DATA2], 1000);
+    PEPSI.init([DATA, DATA2], 5000);
 });
 
 var PEPSI = (function(){
@@ -73,26 +73,31 @@ var PEPSI = (function(){
 		}
 	}
 
-	function nextIteration(){
+	function nextIteration(dataTab){
+		var actPart = 0;
+		clearInterval(intervalVar);
+		actPart ++;
+        if(actPart < dataTab.length)
+			data = dataTab[actPart];
 		document.querySelector('main').innerHTML = '';
         elements = [];
 		initGraphs();
         loopCounter = 0;
+        startMainLoop();
 	}
 
 	return{
 		init: function(dataTab, partTime){
-			var actPart = 0;
 			data = dataTab[0];
 			initGraphs();
 			initEvents();
             startMainLoop();
             setTimeout(function(){window.scrollTo(mainWidth/2.7, 0)}, 500);
             setInterval(function(){
-				nextIteration();
-                actPart ++;
-                if(actPart < dataTab.length)
-					data = dataTab[actPart];
+				nextIteration(dataTab);
+     //            actPart ++;
+     //            if(actPart < dataTab.length)
+					// data = dataTab[actPart];
 			}, partTime);
 		}
 	}
