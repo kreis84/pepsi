@@ -1,16 +1,15 @@
-$(document).ready(function(){
-	PEPSI.init([DATA, DATA2], 1500);
+document.addEventListener("DOMContentLoaded", function(event) {
+    PEPSI.init([DATA], 3000);
 });
 
 var PEPSI = (function(){
-	var	mainHeight = $('main').height(),
-        mainWidth = $('main').width(),
+	var	mainHeight = document.querySelector('main').offsetHeight,//$('main').height(),
+        mainWidth = document.querySelector('main').offsetWidth, //width(),
 		loopInterval = 50,
 		loopCounter = 0,
         intervalVar,
 		data,
 		$elements = [];
-		// timeOfPart = 3000;
 
 	var ANIMS = {
 		move: function(index, values) {
@@ -41,23 +40,24 @@ var PEPSI = (function(){
 		loopCounter += loopInterval;
 	};
 
-	function startMainLop(){
+	function startMainLoop(){
 		intervalVar = setInterval(animateElements, loopInterval);
 	};
 
 	function initGraphs() {
 		data.forEach(function(element) {
-			var newElement = $("<div id='"+element.id+"' class='element'>"),
-				path = 'url(../img/'+element.id+'.png) ';
-            newElement.css({background: path,
-				top: mainHeight / 100 * element.y - (element.height / 2),
-				left: mainWidth / 100 * element.x - (element.width / 2),
-				width: mainWidth / 100 * element.width+'px',
-				height: mainHeight / 100 * element.height+'px',
-				zIndex: element.z
-			});
-			$('main').append(newElement);
-			$elements.push(newElement);
+			var	path = 'url(../img/'+element.id+'.png) ';
+			var newElement = document.createElement('div');
+           	newElement.classList += 'element';
+           	newElement.setAttribute('id', element.id);
+           	newElement.style.background = path;
+           	newElement.style.top = mainHeight / 100 * element.y - (element.height / 2) + 'px';
+           	newElement.style.left = mainWidth / 100 * element.x - (element.width / 2) + 'px';
+           	newElement.style.width = mainWidth / 100 * element.width+'px';
+           	newElement.style.height =  mainHeight / 100 * element.height+'px';
+           	newElement.style.zIndex = element.z;
+			document.querySelector('main').appendChild(newElement);
+            $elements.push('#'+element.id);
 		});
     };
 
@@ -71,7 +71,7 @@ var PEPSI = (function(){
 	};
 
 	function nextIteration(){
-		$('main').html('');
+		document.querySelector('main').innerHTML = '';
         $elements = [];
 		initGraphs();
         loopCounter = 0;
@@ -83,7 +83,7 @@ var PEPSI = (function(){
 			data = dataTab[0];
 			initGraphs();
 			initEvents();
-            startMainLop();
+            startMainLoop();
             setTimeout(function(){window.scrollTo(mainWidth/2.7, 0)}, 500);
 
             setInterval(function(){
