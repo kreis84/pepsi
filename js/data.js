@@ -295,4 +295,71 @@ var DATA = [
             [{type: 'rotate', values: [4]}],
         ]
     },
+];
+
+var DATA2 =[
+        {   time: 1000,
+            x: 10,
+            y: 0,
+            z: 2,
+            counter: 0,
+            width: 40,
+            height: 110,
+            id: 'pepsi10',
+            anims: [[{type: 'rotate', values: [-5]}]]
+        },
+        {   time: 1100,
+            x: -1,
+            y: 40,
+            z: 2,
+            counter: 0,
+            width: 40,
+            height: 85,
+            id: 'pepsi11',
+            anims: [
+                [{type: 'brightnes', values:[120]}],
+                [{type: 'brightnes', values:[80]}]
+            ]
+        },
+        {
+            x: 50,
+            y: 20,
+            z: 3,
+            counter: 0,
+            width: 40,
+            height: 85,
+            id: 'pepsi12',
+        },
+        {
+            x: 49,
+            y: 16,
+            z: 3,
+            counter: 0,
+            width: 10,
+            height: 5,
+            id: 'pepsi1',
+        },
+        {
+            x: 50,
+            y: 40,
+            z: 3,
+            counter: 0,
+            width: 7,
+            height: 11,
+            id: 'pepsi2',
+        },
+        {   time: 600,
+            x: 80,
+            y: 10,
+            z: 4,
+            counter: 0,
+            width: 30,
+            height: 20,
+            id: 'pepsi9',
+            anims: [
+                [{type: 'move', values: [10,5]}, {type: 'rotate', values: [10]}],
+                [{type: 'move', values: [-5,-5]}, {type: 'rotate', values: [-5]}, ],
+                [{type: 'move', values: [-50,0]}]
+            ]
+        }
 ]

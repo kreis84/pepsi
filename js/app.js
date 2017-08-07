@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	PEPSI.init(DATA);
+	PEPSI.init([DATA, DATA2], 1500);
 });
 
 var PEPSI = (function(){
@@ -10,6 +10,7 @@ var PEPSI = (function(){
         intervalVar,
 		data,
 		$elements = [];
+		// timeOfPart = 3000;
 
 	var ANIMS = {
 		move: function(index, values) {
@@ -67,17 +68,30 @@ var PEPSI = (function(){
 				window.scrollTo(center - (event.alpha* 10), 0);
 			});
 		}
+	};
+
+	function nextIteration(){
+		$('main').html('');
+        $elements = [];
+		initGraphs();
+        loopCounter = 0;
 	}
 
 	return{
-		init: function(DATA){
-			data = DATA;
+		init: function(dataTab, partTime){
+			var actPart = 0;
+			data = dataTab[0];
 			initGraphs();
 			initEvents();
             startMainLop();
-            console.log(mainWidth/3);
-            window.scrollTo(0,0);
             setTimeout(function(){window.scrollTo(mainWidth/2.7, 0)}, 500);
+
+            setInterval(function(){
+				nextIteration();
+                actPart ++;
+                if(actPart < dataTab.length)
+					data = dataTab[actPart];
+			}, partTime);
 		}
 	}
 })();
